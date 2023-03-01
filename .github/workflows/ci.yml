@@ -1,0 +1,20 @@
+name: CI
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build
+        run: bin/build.sh
+        env:
+          IMAGE_NAME: "docker-ubuntu-latest-pyenv-git"
+          IMAGE_TAG: "v0.1.0"
